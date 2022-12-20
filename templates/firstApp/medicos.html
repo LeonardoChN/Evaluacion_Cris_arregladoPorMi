@@ -1,0 +1,42 @@
+{% extends 'firstApp/base.html' %}
+
+{% block content %}
+    {% if user.is_superuser %}
+    <div class="alert alert-info display-1 text-center"> LISTADO DE MEDICOS </div>
+    {% if medicos %}
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>RUT</th>
+                <th>NOMBRE</th>
+                <th>ESPECIALIDAD</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medic in medicos %}
+            <tr>
+                <td> {{ medic.rut  }}</td>
+                <td> {{ medic.nombre  }}</td>
+                <td> {{ medic.especialidad  }}</td>
+                <td><a class="btn btn-primary btn-sm" href="/actualizarMedico/{{ medic.id }}"  role="button"> Actualizar </a></td>
+                <td><a class="btn btn-primary btn-sm" href="/eliminarMedico/{{ medic.id }}"  role="button"> Eliminar  </a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-primary" role="alert">
+        <strong> No se encontraron medicos ingresado en le sistema </strong>
+    </div>
+    {% endif %}
+
+    <a href="../" class="btn btn-danger"> VOLVER </a>
+    <a href="../agregarMedico" class="btn btn-info float-end"> AGREGAR MEDICO</a>
+
+
+    {% else %}
+
+    <div class="alert alert-danger display-1 text-center"> Este usuario no esta autorizado para ingresar a medicos </div>
+    
+    {% endif %}
+    {% endblock content %}

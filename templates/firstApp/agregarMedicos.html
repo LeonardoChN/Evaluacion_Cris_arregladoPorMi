@@ -1,0 +1,23 @@
+{% extends 'firstApp/base.html' %}
+
+{% block content %}
+
+
+    <h2>Agregar Medicos</h2>
+    {% if user.is_superuser %}
+        <div class=" alert alert-info display-1 text-center"> AGREGAR MEDICO </div>
+        <form method = 'post'>
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="AGREGAR MEDICO" class="btn btn-info">
+        </form>
+        <br>
+        <a class="btn btn-info" href="../medicos"> VOLVER A MEDICOS </a>
+
+    {% else %}
+
+    <div class=" alert alert-danger display-1 text-center">  USUARIO NO AUTORIZADO PARA CREAR MEDICOS </div>
+
+
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends 'firstApp/base.html' %}
+
+{% block content %}
+
+    {% if user.is_superuser %}
+        <div class=" alert alert-danger display-1 text-center"> El administrador no puede crear citas  </div>
+        
+    {% else %}
+
+    <div class=" alert alert-info display-1 text-center"> CREAR CITA </div>
+    <form method = 'post'>
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="AGREGAR CITA" class="btn btn-info">
+    </form>
+    <br><br>
+    <a class="btn btn-info" href="../citas"> VOLVER A CITAS </a>
+
+
+    {% endif %}
+{% endblock content %}
